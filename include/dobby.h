@@ -126,7 +126,8 @@ int DobbyHook(void *address, dobby_dummy_func_t replace_func, dobby_dummy_func_t
 // dynamic binary instruction instrument
 // for Arm64, can't access q8 - q31, unless enable full floating-point register pack
 typedef void (*dobby_instrument_callback_t)(void *address, DobbyRegisterContext *ctx);
-int DobbyInstrument(void *address, dobby_instrument_callback_t pre_handler);
+// thumb_mode -> 0: auto, 1: arm, 2: thumb
+int DobbyInstrument(void *address, dobby_instrument_callback_t pre_handler, int thumb_mode);
 
 // destroy and restore code patch
 int DobbyDestroy(void *address);

@@ -14,7 +14,7 @@ void test_execve() {
   DobbyInstrument(DobbySymbolResolver(0, "_execve"), [](void *, DobbyRegisterContext *ctx) {
     LOG("execve: %s", (char *)ctx->general.regs.rdi);
     return;
-  });
+  }, 0);
 
   execve("ls", argv, envp);
 

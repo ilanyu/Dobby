@@ -104,10 +104,10 @@ __attribute__((constructor)) static void ctor() {
     }
     if (is_short) {
       dobby_enable_near_branch_trampoline();
-      DobbyInstrument(iter->first, common_handler);
+      DobbyInstrument(iter->first, common_handler, 0);
       dobby_disable_near_branch_trampoline();
     } else {
-      DobbyInstrument(iter->first, common_handler);
+      DobbyInstrument(iter->first, common_handler, 0);
     }
   }
 

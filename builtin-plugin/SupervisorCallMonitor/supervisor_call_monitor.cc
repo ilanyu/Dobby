@@ -56,7 +56,7 @@ void supervisor_call_monitor_register_svc(addr_t svc_addr) {
   }
 
   g_svc_addr_array->push_back(svc_addr);
-  DobbyInstrument((void *)svc_addr, common_supervisor_call_monitor_handler);
+  DobbyInstrument((void *)svc_addr, common_supervisor_call_monitor_handler, 0);
   DLOG(2, "register supervisor_call_monitor at %p", svc_addr);
 }
 

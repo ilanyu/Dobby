@@ -4,7 +4,7 @@
 #include "InterceptRouting/InterceptRouting.h"
 #include "InterceptRouting/Routing/InstructionInstrument/InstructionInstrumentRouting.h"
 
-PUBLIC int DobbyInstrument(void *address, dobby_instrument_callback_t pre_handler) {
+PUBLIC int DobbyInstrument(void *address, dobby_instrument_callback_t pre_handler, int thumb_mode) {
   if (!address) {
     ERROR_LOG("address is 0x0.\n");
     return -1;
@@ -30,6 +30,11 @@ PUBLIC int DobbyInstrument(void *address, dobby_instrument_callback_t pre_handle
   }
 
   entry = new InterceptEntry(kInstructionInstrument, (addr_t)address);
+  if (thumb_mode == 1) {
+    entry->thumb_mode = false;
+  } else if (thumb_mode == 2) {
+    entry->thumb_mode = true;
+  }
 
   auto routing = new InstructionInstrumentRouting(entry, pre_handler, nullptr);
   routing->Prepare();
